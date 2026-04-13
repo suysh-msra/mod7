@@ -1,0 +1,50 @@
+================================================================
+ Divisibility-by-7 Design Comparison  --  WIDTH = 24
+================================================================
+
+ Pipeline latency (combo pipelined): 2 cycles
+ Pipeline stage widths             : 24 -> 6 -> 4 bits
+
+--- Phase 1: Directed tests (16 vectors) ---
+
+--- Phase 2: Pipelined combo directed ---
+  combo_pipe directed: 16 pass / 0 fail
+
+--- Phase 3: Random tests (500 vectors) ---
+
+--- Phase 4: Pipelined combo throughput (500 vectors) ---
+  combo_pipe streaming: 500 pass / 0 fail
+  Effective throughput : 1 result / cycle (back-to-back)
+
+================================================================
+ RESULTS SUMMARY
+================================================================
+
+ WIDTH              : 24 bits
+ Total test vectors : 16 (directed) + 500 (random)
+
+ +-----------------------+---------+---------+
+ | Design                |  PASS   |  FAIL   |
+ +-----------------------+---------+---------+
+ | combo (combinational) |     516 |       0 |
+ | combo (pipelined)     |     516 |       0 |
+ | seq   (FSM)           |     516 |       0 |
+ +-----------------------+---------+---------+
+
+ Cross-design mismatches (combo vs seq): 0
+
+ --- Latency Comparison ---
+
+ combo (combinational) : 0 cycles  (pure combinational)
+ combo (pipelined)     : 2 cycles (fixed systolic pipeline)
+ seq   (FSM)           : min=1  avg=3  max=4 cycles
+
+ --- Throughput ---
+
+ combo (combinational) : instant (pure logic, no clock)
+ combo (pipelined)     : 1 result/cycle after 2-cycle fill
+ seq   (FSM)           : 1 result every 1-4 cycles
+
+================================================================
+ ALL TESTS PASSED
+================================================================
