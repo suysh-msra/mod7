@@ -1,0 +1,55 @@
+================================================================
+ 1024-bit Divisibility-by-7: LUT64 vs LUT128
+================================================================
+
+ WIDTH              : 1024 bits
+ Systolic stages    : 3  (latency = 3 cycles)
+ Directed vectors   : 12
+ Random vectors     : 100
+
+--- Phase 1: Directed tests ---
+
+--- Phase 2: Random tests ---
+
+================================================================
+ RESULTS SUMMARY
+================================================================
+
+ Test Vectors : 12 directed + 100 random = 112 total
+
+ +----------------------------+---------+---------+
+ | Design                     |  PASS   |  FAIL   |
+ +----------------------------+---------+---------+
+ | Systolic + LUT64  (corr.)  |     112 |       0 |
+ | Systolic + LUT128 (direct) |     112 |       0 |
+ | Feedback + LUT64           |     112 |       0 |
+ | Feedback + LUT128          |     112 |       0 |
+ +----------------------------+---------+---------+
+
+ Cross-design mismatches (sys64 vs sys128): 0
+
+ --- Latency ---
+
+ Systolic (both LUT types) : 3 cycles (fixed pipeline)
+ Feedback + LUT64          : min=1  avg=3  max=4 cycles
+ Feedback + LUT128         : min=1  avg=2  max=3 cycles
+
+ --- Throughput ---
+
+ Systolic pipeline : 1 result/cycle after 3-cycle fill
+   Stage 0: 171 PEs  (1024-bit -> 14-bit)
+   Stage 1: 3 PEs  (14-bit -> 8-bit)
+   Stage 2: 2 PEs  (8-bit -> 7-bit)
+ Feedback + LUT64  : 1 result every 1-4 cycles
+ Feedback + LUT128 : 1 result every 1-3 cycles
+
+ --- LUT Comparison ---
+
+ LUT64  : 64-bit constant, 6-bit address, subtract-63 correction
+ LUT128 : 128-bit constant, 7-bit address, no correction needed
+ LUT128 saves 1 subtractor + 1 comparator in systolic final stage
+ LUT64 feedback needs 1-4 extra cycles vs LUT128 feedback (1-3)
+
+================================================================
+ ALL TESTS PASSED
+================================================================
