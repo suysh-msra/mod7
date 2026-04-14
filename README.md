@@ -281,4 +281,5 @@ div7_seq #(
     .divisible_by_7(is_div7)
 );
 ```
-
+**FUTURE SCOPE**
+To expand upon this idea (if mathematically possible) to find highest power of 7.
